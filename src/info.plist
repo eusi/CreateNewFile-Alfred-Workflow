@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com.eusi.alfred.createnewfile</string>
+	<key>category</key>
+	<string>Productivity</string>
+	<key>connections</key>
+	<dict>
+		<key>72AA95A0-B847-470B-B06A-AE12F36065A2</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>B63C7343-2219-46E8-86FA-64E327AB2545</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Eusi</string>
+	<key>description</key>
+	<string>Create new file in finder</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Create New File</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>68</integer>
+				<key>script</key>
+				<string>on run argv
+    set fileName to item 1 of argv
+    if fileName is "" then
+        display dialog "Please enter a file name."
+        return
+    end if
+
+    tell application "Finder"
+        set currentPath to (POSIX path of (target of front Finder window as alias))
+    end tell
+
+    -- Check if the file extension is already present
+    if fileName does not end with ".txt" and fileName does not end with ".html" then
+        set fileName to fileName &amp; ".txt" -- Add .txt by default if no extension is present
+    end if
+
+    set newFilePath to currentPath &amp; fileName
+
+    do shell script "touch " &amp; quoted form of newFilePath
+end run</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>6</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>B63C7343-2219-46E8-86FA-64E327AB2545</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>new</string>
+				<key>subtext</key>
+				<string>Add file name, if no extension is given, `.txt` will be used.</string>
+				<key>text</key>
+				<string>Create new file</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>72AA95A0-B847-470B-B06A-AE12F36065A2</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>72AA95A0-B847-470B-B06A-AE12F36065A2</key>
+		<dict>
+			<key>xpos</key>
+			<real>105</real>
+			<key>ypos</key>
+			<real>70</real>
+		</dict>
+		<key>B63C7343-2219-46E8-86FA-64E327AB2545</key>
+		<dict>
+			<key>xpos</key>
+			<real>305</real>
+			<key>ypos</key>
+			<real>70</real>
+		</dict>
+	</dict>
+	<key>userconfigurationconfig</key>
+	<array/>
+	<key>variablesdontexport</key>
+	<array/>
+	<key>version</key>
+	<string>1.0</string>
+	<key>webaddress</key>
+	<string>https://github.com/eusi/CreateNewFile-Alfred-Workflow</string>
+</dict>
+</plist>
