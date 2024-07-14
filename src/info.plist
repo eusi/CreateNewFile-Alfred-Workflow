@@ -51,8 +51,8 @@
         set currentPath to (POSIX path of (target of front Finder window as alias))
     end tell
 
-    -- Check if the file extension is already present
-    if fileName does not end with ".txt" and fileName does not end with ".html" then
+    -- Check if the file name contains an extension
+    if fileName does not contain "." then
         set fileName to fileName &amp; ".txt" -- Add .txt by default if no extension is present
     end if
 
@@ -120,7 +120,7 @@ end run</string>
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>1.0</string>
+	<string>1.01</string>
 	<key>webaddress</key>
 	<string>https://github.com/eusi/CreateNewFile-Alfred-Workflow</string>
 </dict>
